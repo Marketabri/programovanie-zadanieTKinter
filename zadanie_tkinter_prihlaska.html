@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projekt – Prihláška na krúžok</title>
+<style>
+  :root { --main: #2b6cb0; --light: #eef4fb; --text: #1f2933; --code: #f3f3f8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; font-size: 18px; line-height: 1.45; color: var(--text); background: #fff; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
+  header { border-bottom: 4px solid var(--main); margin-bottom: 16px; padding-bottom: 8px; }
+  h1 { margin: 0; font-size: 32px; color: var(--main); }
+  header p { margin: 4px 0 0; color: #555; }
+  h2 { font-size: 21px; color: var(--main); margin: 0 0 6px; display: flex; align-items: center; gap: 10px; }
+  .num { background: var(--main); color: #fff; border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  section { background: var(--light); border-radius: 10px; padding: 12px 18px; margin-bottom: 14px; break-inside: avoid; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .grid section { margin-bottom: 0; }
+  ul, ol { margin: 4px 0; padding-left: 24px; }
+  li { margin: 2px 0; }
+  code { font-family: Consolas, "Courier New", monospace; background: var(--code); padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+  pre { font-family: Consolas, "Courier New", monospace; background: #1f2933; color: #e6edf3; padding: 10px 14px; border-radius: 8px; font-size: 15px; line-height: 1.35; margin: 6px 0 0; overflow-x: auto; }
+  .warn { background: #fff4e5; border-left: 6px solid #e08a00; }
+  .stop { background: #fdecec; border-left: 6px solid #c53030; font-weight: 600; padding: 6px 12px; border-radius: 6px; margin-top: 6px; font-size: 16px; }
+  table { border-collapse: collapse; width: 100%; background: #fff; }
+  th, td { text-align: left; padding: 4px 10px; border-bottom: 1px solid #dde3ec; font-size: 16px; }
+  th { background: var(--main); color: #fff; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .wrap { padding: 16px; } }
+  @media print { body { font-size: 12px; } h1 { font-size: 22px; } h2 { font-size: 14px; } pre { font-size: 10.5px; } th, td, .stop { font-size: 11px; } section { padding: 8px 12px; margin-bottom: 8px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Projekt: Prihláška na krúžok (Tkinter)</h1>
+  <p>Pracuješ v PyCharme v súbore <code>prihlaska.py</code>. Postupuj presne podľa krokov.</p>
+</header>
+
+<section class="warn">
+  <h2><span class="num">!</span>Pravidlá</h2>
+  <ul>
+    <li>Pred každý krok napíš komentár <code># KROK 1</code>, <code># KROK 2</code>, …</li>
+    <li>Premenné pomenuj <b>presne</b> tak, ako je uvedené v zadaní. Texty v okne musia byť <b>presne</b> podľa zadania.</li>
+    <li>Používaj iba to, čo sme brali: <code>from tkinter import *</code>. <b>Nepoužívaj</b> <code>class</code>, <code>ttk</code> ani <code>messagebox</code>.</li>
+
+  </ul>
+</section>
+
+<div class="grid">
+  <section>
+    <h2><span class="num">1</span>Okno</h2>
+    <ul>
+      <li>Premenná <code>okno</code>, titulok <b>„Prihláška na krúžok“</b>, rozmer <code>450x620</code>.</li>
+      <li>Zakáž zmenu veľkosti okna: <code>okno.resizable(False, False)</code>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>Hlavička – Frame + pack</h2>
+    <ul>
+      <li><code>ram_hlavicka</code> je <b>Frame</b> s tmavomodrým pozadím. Umiestni ho cez <code>pack(fill="x")</code>.</li>
+      <li>V ňom je <code>Label</code> s textom <b>„PRIHLÁŠKA“</b>, bielym písmom, veľkosť 18, tučné.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>Osobné údaje – LabelFrame + grid</h2>
+    <ul>
+      <li><code>lf_udaje</code> je <b>LabelFrame</b> s nadpisom <b>„Osobné údaje“</b>. Umiestni ho cez <code>pack(fill="x", padx=10, pady=5)</code>.</li>
+      <li>Vo vnútri použi <b>grid</b> s dvoma stĺpcami. Vľavo sú Labely, vpravo vstupy:
+        <ul>
+          <li><b>Meno:</b> → <code>entry_meno</code> (Entry)</li>
+          <li><b>Priezvisko:</b> → <code>entry_priezvisko</code> (Entry)</li>
+          <li><b>Vek:</b> → <code>spin_vek</code> (Spinbox od 14 do 20)</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="stop">🛑 KONTROLA 1: zobrazuje sa hlavička a 3 riadky údajov</div>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Výber krúžku – Radiobutton</h2>
+    <ul>
+      <li><code>lf_kruzok</code> je LabelFrame s nadpisom <b>„Krúžok“</b>.</li>
+      <li>Premenná <code>var_kruzok = StringVar(value="Programovanie")</code>.</li>
+      <li>Vlož 4 Radiobuttony pod sebou (pack, <code>anchor="w"</code>): <b>Programovanie, Robotika, E-šport, Grafika</b>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Dni – Checkbutton</h2>
+    <ul>
+      <li><code>lf_dni</code> je LabelFrame s nadpisom <b>„Kedy môžem“</b>.</li>
+      <li>Vlož 5 Checkbuttonov <b>vedľa seba</b> (pack, <code>side="left"</code>): <b>Po, Ut, St, Št, Pi</b>.</li>
+      <li>Každý má vlastnú premennú <code>IntVar</code>: <code>var_po</code>, <code>var_ut</code>, <code>var_st</code>, <code>var_stv</code>, <code>var_pi</code>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Poznámka – Text</h2>
+    <ul>
+      <li><code>lf_poznamka</code> je LabelFrame s nadpisom <b>„Poznámka“</b>.</li>
+      <li>Vo vnútri je <code>text_poznamka</code> (Text) s výškou 3 riadky a šírkou 45 znakov.</li>
+    </ul>
+    <div class="stop">🛑 KONTROLA 2: celý formulár je viditeľný a nič neprečnieva</div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>Tlačidlá a výsledok</h2>
+    <ul>
+      <li><code>ram_tlacidla</code> je Frame, v ktorom sú 2 tlačidlá vedľa seba:
+        <ul>
+          <li><code>btn_odoslat</code> s textom <b>„Odoslať“</b> zavolá funkciu <code>odoslat()</code>,</li>
+          <li><code>btn_vymazat</code> s textom <b>„Vymazať“</b> zavolá funkciu <code>vymazat()</code>.</li>
+        </ul>
+      </li>
+      <li>Pod nimi je <code>label_vysledok</code> (Label) s prázdnym textom.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">8</span>Verzia – place</h2>
+    <ul>
+      <li>Do pravého dolného rohu okna umiestni Label <b>„v1.0 – Tvoje priezvisko“</b>:<br>
+      <code>place(relx=1, rely=1, anchor="se")</code></li>
+    </ul>
+  </section>
+</div>
+
+<section>
+  <h2><span class="num">9</span>Funkcia <code>odoslat()</code></h2>
+  <ol>
+    <li>Ak je meno <b>alebo</b> priezvisko prázdne, do <code>label_vysledok</code> vypíš <b>červenou</b> farbou: <code>Vyplň meno a priezvisko!</code></li>
+    <li>Inak poskladaj zoznam vybraných dní a vypíš <b>zelenou</b> farbou presne v tomto tvare:
+<pre>Ján Novák (16 r.) – Robotika
+Dni: Po, St, Pi
+Poznámka: Mám vlastný notebook.</pre></li>
+    <li>Ak nie je vybraný žiadny deň, namiesto dní vypíš <code>Dni: nevybrané</code>.</li>
+  </ol>
+</section>
+
+<div class="grid">
+  <section>
+    <h2><span class="num">10</span>Funkcia <code>vymazat()</code></h2>
+    <ul>
+      <li>Vymaže obe Entry a Text.</li>
+      <li>Vek nastaví späť na 14.</li>
+      <li>Krúžok nastaví na „Programovanie“.</li>
+      <li>Odškrtne všetky dni.</li>
+      <li>Vymaže <code>label_vysledok</code>.</li>
+    </ul>
+    <div class="stop">🛑 KONTROLA 3: odoslanie aj vymazanie fungujú</div>
+  </section>
+
+  <section>
+    <h2>Užitočné metódy</h2>
+    <table>
+      <tr><th>Widget</th><th>Čítanie</th><th>Mazanie</th></tr>
+      <tr><td>Entry / Spinbox</td><td><code>.get()</code></td><td><code>.delete(0, "end")</code></td></tr>
+      <tr><td>Text</td><td><code>.get("1.0", "end")</code></td><td><code>.delete("1.0", "end")</code></td></tr>
+      <tr><td>StringVar / IntVar</td><td><code>.get()</code></td><td><code>.set(...)</code></td></tr>
+      <tr><td>Label</td><td><code>.cget("text")</code></td><td><code>.config(text="")</code></td></tr>
+    </table>
+  </section>
+</div>
+
+</div>
+</body>
+</html>
